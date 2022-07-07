@@ -1,10 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { getCategories } from '../services/api';
+import Categories from './Categories';
 
 class ProductList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      categories: [],
+    };
+  }
+
+  componentDidMount() {
+    this.showCategories();
+  }
+
+  showCategories = async () => {
+    const result = await getCategories();
+    console.log(result);
+    this.setState({
+      categories: result,
+    });
+  }
+
   render() {
+    const { categories } = this.state;
     return (
       <div>
+        <Categories categories={ categories } />
         <form className="formProductList">
           <label
             htmlFor="searchId"
