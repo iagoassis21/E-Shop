@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/Categories';
 import Products from '../components/Products';
-// import Details from './Details';
 
 class ProductList extends React.Component {
   render() {
@@ -13,14 +11,14 @@ class ProductList extends React.Component {
       productItem,
       listItems,
       onProductByQuery,
-      onProductsByCategoryId,
+      onProductByCategoryId,
       onInputChange,
       onSubmit } = this.props;
     return (
       <div>
         <Categories
           categories={ categories }
-          onSearchCategory={ onProductsByCategoryId }
+          onSearchCategory={ onProductByCategoryId }
         />
         <form className="formProductList" onSubmit={ onSubmit }>
           <label
@@ -64,7 +62,7 @@ ProductList.propTypes = {
   productItem: PropTypes.arrayOf(PropTypes.object).isRequired,
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   onProductByQuery: PropTypes.func.isRequired,
-  onProductsByCategoryId: PropTypes.func.isRequired,
+  onProductByCategoryId: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

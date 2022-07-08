@@ -33,7 +33,6 @@ class Content extends React.Component {
 
   showCategories = async () => {
     const result = await getCategories();
-    console.log(result);
     this.setState({
       categories: result,
     });
