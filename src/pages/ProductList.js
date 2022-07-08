@@ -1,22 +1,28 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from '../components/Categories';
 import Products from '../components/Products';
 // import Details from './Details';
 
 class ProductList extends React.Component {
- 
-
   render() {
-    const { categories, productItem, listItems } = this.state;
+    const {
+      categories,
+      productItem,
+      listItems,
+      onProductByQuery,
+      onProductsByCategoryId,
+      onInputChange,
+      onSubmit } = this.props;
     return (
       <div>
         <Categories
           categories={ categories }
-          onSearchCategory={ this.searchProductsByCategoryId }
+          onSearchCategory={ onProductsByCategoryId }
         />
-        <form className="formProductList" onSubmit={ this.handleSubmit }>
+        <form className="formProductList" onSubmit={ onSubmit }>
           <label
             htmlFor="searchId"
           >
@@ -26,13 +32,13 @@ class ProductList extends React.Component {
               data-testid="query-input"
               value={ productItem }
               name="productItem"
-              onChange={ this.handleInputChange }
+              onChange={ onInputChange }
             />
           </label>
           <button
             data-testid="query-button"
             type="submit"
-            onClick={ this.searchProductByQuery }
+            onClick={ onProductByQuery }
           >
             Buscar
           </button>
@@ -52,5 +58,15 @@ class ProductList extends React.Component {
     );
   }
 }
+
+ProductList.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  productItem: PropTypes.arrayOf(PropTypes.object).isRequired,
+  listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onProductByQuery: PropTypes.func.isRequired,
+  onProductsByCategoryId: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ProductList;

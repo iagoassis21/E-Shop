@@ -71,6 +71,10 @@ class Content extends React.Component {
                 categories={ categories }
                 productItem={ productItem }
                 listItems={ listItems }
+                onSubmit={ this.handleSubmit }
+                onProductByQuery={ this.searchProductByQuery }
+                onProductByCategoryId={ this.searchProductsByCategoryId }
+                onInputChange={ this.handleInputChange }
               />) }
           />
           <Route path="/cart" render={ () => (<Cart />) } />
