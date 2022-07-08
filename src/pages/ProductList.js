@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
-import Categories from './Categories';
-import Products from './Products';
+import Categories from '../components/Categories';
+import Products from '../components/Products';
+// import Details from './Details';
 
 class ProductList extends React.Component {
   constructor() {
