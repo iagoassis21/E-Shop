@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-export default class Categories extends Component {
+export default class Categories extends React.Component {
   render() {
-    const { categories } = this.props;
+    const { categories, onSearchCategory } = this.props;
     return (
       <section>
         <h2>Categories</h2>
@@ -12,7 +12,11 @@ export default class Categories extends Component {
             {
               categories.map(({ name, id }) => (
                 <li key={ id }>
-                  <button data-testid="category" type="button">
+                  <button
+                    data-testid="category"
+                    type="button"
+                    onClick={ () => onSearchCategory(id) }
+                  >
                     { name }
                   </button>
                 </li>
@@ -27,4 +31,5 @@ export default class Categories extends Component {
 
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSearchCategory: PropTypes.func.isRequired,
 };
