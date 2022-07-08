@@ -4,6 +4,7 @@ import '../App.css';
 import Cart from '../pages/Cart';
 import Details from '../pages/Details';
 import ProductList from '../pages/ProductList';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 class Content extends React.Component {
   constructor() {
