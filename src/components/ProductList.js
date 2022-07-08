@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from './Categories';
 import Products from './Products';
 
-class ProductList extends Component {
+class ProductList extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -45,11 +45,22 @@ class ProductList extends Component {
     });
   }
 
+  searchProductsByCategoryId = async (id) => {
+    const { results } = await getProductsFromCategoryAndQuery(id, null);
+    console.log(results);
+    this.setState({
+      listItems: results,
+    });
+  }
+
   render() {
     const { categories, productItem, listItems } = this.state;
     return (
       <div>
-        <Categories categories={ categories } />
+        <Categories
+          categories={ categories }
+          onSearchCategory={ this.searchProductsByCategoryId }
+        />
         <form className="formProductList" onSubmit={ this.handleSubmit }>
           <label
             htmlFor="searchId"
