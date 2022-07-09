@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Products from '../components/Products';
+import PropTypes from 'prop-types';
 
-export default class Cart extends Component {
+class Cart extends Component {
   render() {
     const { cartItems } = this.props;
 
@@ -9,12 +9,6 @@ export default class Cart extends Component {
       <div>
         {
           cartItems.map((item) => (
-            // const itemId = Object.keys(item);
-            // const { titulo } = item[itemId];
-            // const { imagem } = item[itemId];
-            // const { preço } = item[itemId];
-            // const { quantidade } = item[itemId];
-            // return (
             <article key={ item.id }>
               <h3 data-testid="shopping-cart-product-name">
                 { item.title }
@@ -36,3 +30,9 @@ export default class Cart extends Component {
     );
   }
 }
+
+Cart.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default Cart;

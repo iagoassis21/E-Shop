@@ -59,24 +59,12 @@ class Content extends React.Component {
     const product = listItems.find((item) => item.id === id);
     const check = cartItems.find((item) => item.id === product.id);
     let productObject = {
-      // [product.id]: {
-      //   id: product.id,
-      //   titulo: product.title,
-      //   preço: product.price,
-      //   imagem: product.thumbnail,
-      //   quantidade: 1,
       ...product,
       quantidade: 1,
     };
 
     if (check) {
       productObject = {
-        // [product.id]: {
-        //   id: product.id,
-        //   titulo: product.title,
-        //   preço: product.price,
-        //   imagem: product.thumbnail,
-        // quantidade: check.quantidade + 1,
         ...product,
         quantidade: check.quantidade + 1,
       };
