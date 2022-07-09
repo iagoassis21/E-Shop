@@ -12,7 +12,8 @@ class Content extends React.Component {
     this.state = {
       categories: [],
       productItem: '',
-      listItems: '',
+      listItems: [],
+      cartItems: [],
     };
   }
 
@@ -48,17 +49,49 @@ class Content extends React.Component {
 
   searchProductsByCategoryId = async (id) => {
     const { results } = await getProductsFromCategoryAndQuery(id, null);
-    console.log(results);
     this.setState({
       listItems: results,
     });
+  }
+
+  handleAddToCart = (id) => {
+    const { listItems, cartItems } = this.state;
+    const product = listItems.find((item) => item.id === id);
+    const check = cartItems.find((item) => item.id === product.id);
+    let productObject = {
+      // [product.id]: {
+      //   id: product.id,
+      //   titulo: product.title,
+      //   preço: product.price,
+      //   imagem: product.thumbnail,
+      //   quantidade: 1,
+      ...product,
+      quantidade: 1,
+    };
+
+    if (check) {
+      productObject = {
+        // [product.id]: {
+        //   id: product.id,
+        //   titulo: product.title,
+        //   preço: product.price,
+        //   imagem: product.thumbnail,
+        // quantidade: check.quantidade + 1,
+        ...product,
+        quantidade: check.quantidade + 1,
+      };
+    }
+    this.setState((prevState) => ({
+      cartItems: [productObject, ...prevState.cartItems],
+    }));
   }
 
   render() {
     const {
       categories,
       productItem,
-      listItems } = this.state;
+      listItems,
+      cartItems } = this.state;
 
     return (
       <div>
@@ -75,9 +108,16 @@ class Content extends React.Component {
                 onProductByQuery={ this.searchProductByQuery }
                 onProductByCategoryId={ this.searchProductsByCategoryId }
                 onInputChange={ this.handleInputChange }
+                onAddToCart={ this.handleAddToCart }
               />) }
           />
-          <Route path="/cart" render={ () => (<Cart />) } />
+          <Route
+            path="/cart"
+            render={ () => (
+              <Cart
+                cartItems={ cartItems }
+              />) }
+          />
           <Route
             path="/details/:id"
             render={ (routeProps) => (

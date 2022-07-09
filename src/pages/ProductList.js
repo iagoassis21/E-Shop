@@ -12,6 +12,7 @@ class ProductList extends React.Component {
       listItems,
       onProductByQuery,
       onProductByCategoryId,
+      onAddToCart,
       onInputChange,
       onSubmit } = this.props;
     return (
@@ -46,7 +47,12 @@ class ProductList extends React.Component {
         </p>
         {
           listItems.length
-            ? <Products listItems={ listItems } />
+            ? (
+              <Products
+                listItems={ listItems }
+                onAddToCart={ onAddToCart }
+              />
+            )
             : 'Nenhum produto foi encontrado'
         }
         <nav>
@@ -59,8 +65,9 @@ class ProductList extends React.Component {
 
 ProductList.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-  productItem: PropTypes.arrayOf(PropTypes.object).isRequired,
+  productItem: PropTypes.string.isRequired,
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onAddToCart: PropTypes.func.isRequired,
   onProductByQuery: PropTypes.func.isRequired,
   onProductByCategoryId: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,

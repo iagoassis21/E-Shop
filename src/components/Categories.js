@@ -30,6 +30,6 @@ export default class Categories extends React.Component {
 }
 
 Categories.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSearchCategory: PropTypes.func.isRequired,
 };
