@@ -15,11 +15,11 @@ class Cart extends Component {
               </h3>
               <img src={ item.thumbnail } alt={ item.title } />
               <p>
-                { item.price }
+                { item.price * item.quantity }
               </p>
               <p data-testid="shopping-cart-product-quantity">
                 {' '}
-                { item.quantidade }
+                { item.quantity }
                 {' '}
               </p>
             </article>

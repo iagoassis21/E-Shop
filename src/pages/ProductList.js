@@ -21,6 +21,9 @@ class ProductList extends React.Component {
           categories={ categories }
           onSearchCategory={ onProductByCategoryId }
         />
+        <nav>
+          <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+        </nav>
         <form className="formProductList" onSubmit={ onSubmit }>
           <label
             htmlFor="searchId"
@@ -55,9 +58,6 @@ class ProductList extends React.Component {
             )
             : 'Nenhum produto foi encontrado'
         }
-        <nav>
-          <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
-        </nav>
       </div>
     );
   }

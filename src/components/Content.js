@@ -58,20 +58,28 @@ class Content extends React.Component {
     const { listItems, cartItems } = this.state;
     const product = listItems.find((item) => item.id === id);
     const check = cartItems.find((item) => item.id === product.id);
-    let productObject = {
-      ...product,
-      quantidade: 1,
-    };
-
     if (check) {
-      productObject = {
+      this.setState({
+        cartItems: this.increaseProductQuantity(id, cartItems),
+      });
+    } else {
+      const productObject = {
         ...product,
-        quantidade: check.quantidade + 1,
+        quantity: 1,
       };
+      this.setState((prevState) => ({
+        cartItems: [productObject, ...prevState.cartItems],
+      }));
     }
-    this.setState((prevState) => ({
-      cartItems: [productObject, ...prevState.cartItems],
-    }));
+  }
+
+  increaseProductQuantity(itemId, cartList) {
+    return cartList.map((item) => {
+      if (item.id === itemId) {
+        item.quantity += 1;
+      }
+      return item;
+    });
   }
 
   render() {
