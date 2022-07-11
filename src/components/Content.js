@@ -42,6 +42,7 @@ class Content extends React.Component {
   searchProductByQuery = async () => {
     const { productItem } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(null, productItem);
+    console.log(results);
     this.setState({
       listItems: results,
     });

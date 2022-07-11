@@ -33,3 +33,7 @@ Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSearchCategory: PropTypes.func.isRequired,
 };
+// Categories.propTypes = {
+//   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+//   onSearchCategory: PropTypes.func.isRequired,
+// };
