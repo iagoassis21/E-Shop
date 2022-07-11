@@ -10,7 +10,9 @@ export default class Details extends React.Component {
   // }
 
   render() {
-    const { match: { params: { id, title, thumbnail, price } } } = this.props;
+    const { listItems, match: { params: { id } } } = this.props;
+    const element = listItems.find((item) => item.id === id);
+    const { title, thumbnail, price } = element;
     return (
       <div>
         <h2>
@@ -18,23 +20,19 @@ export default class Details extends React.Component {
           {id}
           {' '}
         </h2>
-        <h3>{title}</h3>
+        <h3 data-testid="product-detail-name">{title}</h3>
         <img src={ thumbnail } alt={ title } />
         <p>{price}</p>
-        { console.log() }
       </div>
     );
   }
 }
 
 Details.propTypes = {
+  listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      thumbnail: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     }),
   }).isRequired,
 };
