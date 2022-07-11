@@ -14,7 +14,8 @@ class ProductList extends React.Component {
       onProductByCategoryId,
       onAddToCart,
       onInputChange,
-      onSubmit } = this.props;
+      onSubmit,
+      onCartItemsQuantity } = this.props;
     return (
       <div>
         <Categories
@@ -23,6 +24,9 @@ class ProductList extends React.Component {
         />
         <nav>
           <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+          <span data-testid="shopping-cart-size">
+            { onCartItemsQuantity }
+          </span>
         </nav>
         <form className="formProductList" onSubmit={ onSubmit }>
           <label
@@ -72,6 +76,7 @@ ProductList.propTypes = {
   onProductByCategoryId: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onCartItemsQuantity: PropTypes.number.isRequired,
 };
 
 export default ProductList;

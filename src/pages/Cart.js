@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Cart extends Component {
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, onChangeQuantity } = this.props;
 
     return (
       <div>
@@ -22,6 +22,20 @@ class Cart extends Component {
                 { item.quantity }
                 {' '}
               </p>
+              <button
+                data-testid="product-decrease-quantity"
+                type="button"
+                onClick={ () => { onChangeQuantity('rem', item.id, cartItems); } }
+              >
+                -
+              </button>
+              <button
+                data-testid="product-increase-quantity"
+                type="button"
+                onClick={ () => { onChangeQuantity('add', item.id, cartItems); } }
+              >
+                +
+              </button>
             </article>
           ))
         }
@@ -33,6 +47,7 @@ class Cart extends Component {
 
 Cart.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onChangeQuantity: PropTypes.func.isRequired,
 };
 
 export default Cart;
