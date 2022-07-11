@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Avaliation from '../components/Avaliation';
 
 export default class Details extends React.Component {
   render() {
@@ -8,6 +9,13 @@ export default class Details extends React.Component {
       cartItemsQuantity,
       onAddToCart,
       listItems,
+      rate,
+      message,
+      email,
+      onInputChange,
+      onSubmit,
+      onSaveAvaliation,
+      avaliations,
       match: { params: { id } } } = this.props;
     const element = listItems.find((item) => item.id === id) || [];
     const { title, thumbnail, price } = element;
@@ -27,6 +35,17 @@ export default class Details extends React.Component {
         <span data-testid="shopping-cart-size">
           { cartItemsQuantity }
         </span>
+        <div>
+          <Avaliation
+            email={ email }
+            rate={ rate }
+            message={ message }
+            onInputChange={ onInputChange }
+            onSubmit={ onSubmit }
+            onSaveAvaliation={ onSaveAvaliation }
+            avaliations={ avaliations }
+          />
+        </div>
       </div>
     );
   }
@@ -34,6 +53,11 @@ export default class Details extends React.Component {
 
 Details.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  rate: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
   cartItemsQuantity: PropTypes.number.isRequired,
   onAddToCart: PropTypes.func.isRequired,
   match: PropTypes.shape({

@@ -14,6 +14,10 @@ class Content extends React.Component {
       productItem: '',
       listItems: [],
       cartItems: [],
+      rate: '',
+      email: '',
+      message: '',
+      avaliations: [],
     };
   }
 
@@ -26,10 +30,27 @@ class Content extends React.Component {
   }
 
   handleInputChange = ({ target }) => {
-    const { name, value } = target;
+    const { name, type, value } = target;
+    // const value = type === 'radio' ? checked : value;
+    if (type === 'radio') {
+      this.setState({
+        rate: value,
+      });
+    }
     this.setState({
       [name]: value,
     });
+  }
+
+  handleSaveAvaliation = () => {
+    const { avaliations, email, message, rate } = this.state;
+    const avaliationOfObject = {
+      email,
+      message,
+      rate,
+    };
+    avaliations.push(avaliationOfObject);
+    this.setState({ avaliations });
   }
 
   showCategories = async () => {
@@ -114,7 +135,11 @@ class Content extends React.Component {
       categories,
       productItem,
       listItems,
-      cartItems } = this.state;
+      cartItems,
+      rate,
+      email,
+      message,
+      avaliations } = this.state;
 
     return (
       <div>
@@ -151,6 +176,13 @@ class Content extends React.Component {
                 listItems={ listItems }
                 onAddToCart={ this.handleAddToCart }
                 cartItemsQuantity={ this.handleCartItemsQuantity() }
+                rate={ rate }
+                email={ email }
+                message={ message }
+                onInputChange={ this.handleInputChange }
+                onSubmit={ this.handleSubmit }
+                onSaveAvaliation={ this.handleSaveAvaliation }
+                avaliations={ avaliations }
               />) }
           />
         </Switch>
