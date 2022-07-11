@@ -3,7 +3,7 @@ import React from 'react';
 
 export default class Details extends React.Component {
   render() {
-    const { listItems, match: { params: { id } } } = this.props;
+    const { onInputChange, listItems, match: { params: { id } } } = this.props;
     const element = listItems.find((item) => item.id === id);
     const { title, thumbnail, price } = element;
     return (
