@@ -30,10 +30,11 @@ export default class Details extends React.Component {
 Details.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       thumbnail: PropTypes.string.isRequired,
       price: PropTypes.string.isRequired,
       listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     }),
-  }),
+  }).isRequired,
 };
