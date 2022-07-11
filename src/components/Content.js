@@ -76,7 +76,7 @@ class Content extends React.Component {
 
   handleCartItemsQuantity = () => {
     const { cartItems } = this.state;
-    return cartItems.length;
+    return cartItems.reduce((sum, item) => sum + item.quantity, 0);
   }
 
   addItemQuantityInCart = (action, itemId, cartList) => {
@@ -132,7 +132,7 @@ class Content extends React.Component {
                 onProductByCategoryId={ this.searchProductsByCategoryId }
                 onInputChange={ this.handleInputChange }
                 onAddToCart={ this.handleAddToCart }
-                onCartItemsQuantity={ this.handleCartItemsQuantity() }
+                cartItemsQuantity={ this.handleCartItemsQuantity() }
               />) }
           />
           <Route
@@ -149,6 +149,8 @@ class Content extends React.Component {
               <Details
                 { ...routeProps }
                 listItems={ listItems }
+                onAddToCart={ this.handleAddToCart }
+                cartItemsQuantity={ this.handleCartItemsQuantity() }
               />) }
           />
         </Switch>
