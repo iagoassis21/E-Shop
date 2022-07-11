@@ -60,6 +60,8 @@ Details.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   cartItemsQuantity: PropTypes.number.isRequired,
   onAddToCart: PropTypes.func.isRequired,
+  onSaveAvaliation: PropTypes.func.isRequired,
+  avaliations: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
