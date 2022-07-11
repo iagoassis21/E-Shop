@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default class Products extends Component {
   render() {
-    const { listItems } = this.props;
+    const { listItems, onAddToCart } = this.props;
     return (
       <div>
         {
@@ -17,6 +17,13 @@ export default class Products extends Component {
                   <p>{price}</p>
                 </article>
               </Link>
+              <button
+                type="button"
+                onClick={ () => onAddToCart(id) }
+                data-testid="product-add-to-cart"
+              >
+                Adicionar ao Carrinho
+              </button>
             </div>
           ))
         }
@@ -27,4 +34,5 @@ export default class Products extends Component {
 
 Products.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onAddToCart: PropTypes.func.isRequired,
 };
