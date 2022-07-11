@@ -47,6 +47,7 @@ class Cart extends Component {
 
 Cart.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onChangeQuantity: PropTypes.func.isRequired,
 };
 
 export default Cart;
