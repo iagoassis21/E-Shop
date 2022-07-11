@@ -57,7 +57,6 @@ class Content extends React.Component {
   handleAddToCart = (id) => {
     const { listItems, cartItems } = this.state;
     const product = listItems.find((item) => item.id === id);
-    console.log(product);
     const check = cartItems.find((item) => item.id === product.id);
     if (check) {
       this.setState({
@@ -72,6 +71,11 @@ class Content extends React.Component {
         cartItems: [...prevState.cartItems, productObject],
       }));
     }
+  }
+
+  handleCartItemsQuantity = () => {
+    const { cartItems } = this.state;
+    return cartItems.length;
   }
 
   addItemQuantityInCart = (action, itemId, cartList) => {
@@ -127,6 +131,7 @@ class Content extends React.Component {
                 onProductByCategoryId={ this.searchProductsByCategoryId }
                 onInputChange={ this.handleInputChange }
                 onAddToCart={ this.handleAddToCart }
+                onCartItemsQuantity={ this.handleCartItemsQuantity() }
               />) }
           />
           <Route
