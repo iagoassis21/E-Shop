@@ -149,7 +149,7 @@ class Content extends React.Component {
               <Details
                 { ...routeProps }
                 listItems={ listItems }
-                onInputChange={ this.handleInputChange }
+                onAddToCart={ this.handleAddToCart }
               />) }
           />
         </Switch>
