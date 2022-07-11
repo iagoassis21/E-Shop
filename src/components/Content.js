@@ -76,7 +76,7 @@ class Content extends React.Component {
 
   handleCartItemsQuantity = () => {
     const { cartItems } = this.state;
-    return cartItems.length;
+    return cartItems.reduce((sum, item) => sum + item.quantity, 0);
   }
 
   addItemQuantityInCart = (action, itemId, cartList) => {
