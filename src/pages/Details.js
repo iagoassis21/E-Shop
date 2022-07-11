@@ -61,11 +61,7 @@ Details.propTypes = {
   cartItemsQuantity: PropTypes.number.isRequired,
   onAddToCart: PropTypes.func.isRequired,
   onSaveAvaliation: PropTypes.func.isRequired,
-<<<<<<< HEAD
-  avaliations: PropTypes.arrayOf(Object).isRequired,
-=======
   avaliations: PropTypes.arrayOf(PropTypes.object).isRequired,
->>>>>>> 77a49c58809e94d83d82e639d3dfda6735242902
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
