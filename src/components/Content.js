@@ -17,7 +17,7 @@ class Content extends React.Component {
       rate: '',
       email: '',
       message: '',
-      avaliations: [],
+      avaliations: JSON.parse(localStorage.getItem('feedbacks')) || [],
     };
   }
 
@@ -50,7 +50,13 @@ class Content extends React.Component {
       rate,
     };
     avaliations.push(avaliationOfObject);
-    this.setState({ avaliations });
+    localStorage.setItem('feedbacks', JSON.stringify(avaliations));
+    this.setState({
+      email: '',
+      message: '',
+      rate: '',
+      avaliations,
+    });
   }
 
   showCategories = async () => {

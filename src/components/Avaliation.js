@@ -95,15 +95,13 @@ export default class Avaliation extends Component {
           </button>
         </form>
         <div>
-          { avaliations.length === 0
-            ? null
-            : avaliations.map((element, index) => (
-              <div key={ index }>
-                <p>{ element.email }</p>
-                <p>{ element.rate }</p>
-                <p>{ element.message }</p>
-              </div>
-            ))}
+          { avaliations.map((element, index) => (
+            <div key={ index }>
+              <p>{ element.email }</p>
+              <p>{ element.rate }</p>
+              <p>{ element.message }</p>
+            </div>
+          ))}
         </div>
       </div>
     );
