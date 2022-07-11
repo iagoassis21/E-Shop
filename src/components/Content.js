@@ -57,6 +57,7 @@ class Content extends React.Component {
   handleAddToCart = (id) => {
     const { listItems, cartItems } = this.state;
     const product = listItems.find((item) => item.id === id);
+    console.log(product);
     const check = cartItems.find((item) => item.id === product.id);
     if (check) {
       this.setState({
@@ -68,14 +69,35 @@ class Content extends React.Component {
         quantity: 1,
       };
       this.setState((prevState) => ({
-        cartItems: [productObject, ...prevState.cartItems],
+        cartItems: [...prevState.cartItems, productObject],
       }));
     }
   }
 
+  addItemQuantityInCart = (action, itemId, cartList) => {
+    if (action === 'add') {
+      this.setState({
+        cartItems: this.increaseProductQuantity(itemId, cartList),
+      });
+    } else if (action === 'rem') {
+      this.setState({
+        cartItems: this.decreaseProductQuantity(itemId, cartList),
+      });
+    }
+  }
+
+  decreaseProductQuantity(itemId, cartList) {
+    return cartList.map((item) => {
+      if (item.id === itemId && item.quantity > 1) {
+        item.quantity -= 1;
+      }
+      return item;
+    });
+  }
+
   increaseProductQuantity(itemId, cartList) {
     return cartList.map((item) => {
-      if (item.id === itemId) {
+      if (item.id === itemId && (item.quantity < Number(item.available_quantity))) {
         item.quantity += 1;
       }
       return item;
@@ -112,6 +134,7 @@ class Content extends React.Component {
             render={ () => (
               <Cart
                 cartItems={ cartItems }
+                onChangeQuantity={ this.addItemQuantityInCart }
               />) }
           />
           <Route

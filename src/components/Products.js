@@ -8,7 +8,13 @@ export default class Products extends Component {
     return (
       <div>
         {
-          listItems.map(({ title, price, id, thumbnail }) => (
+          listItems.map(({
+            title,
+            price,
+            id,
+            thumbnail,
+            shipping: { free_shipping: freeShipping },
+          }) => (
             <div className="card" key={ id } data-testid="product">
               <Link data-testid="product-detail-link" to={ `/details/${id}` }>
                 <article>
@@ -24,6 +30,9 @@ export default class Products extends Component {
               >
                 Adicionar ao Carrinho
               </button>
+              {
+                freeShipping && <p data-testid="free-shipping">frete grátis</p>
+              }
             </div>
           ))
         }
