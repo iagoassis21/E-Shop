@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   render() {
@@ -40,6 +41,7 @@ class Cart extends Component {
           ))
         }
         <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        <Link to="/checkout" data-testid="checkout-products"> Finalizar Compra </Link>
       </div>
     );
   }
