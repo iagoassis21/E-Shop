@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Avaliation from '../components/Avaliation';
 
 export default class Details extends React.Component {
   render() {
     const {
-      cartItemsQuantity,
       onAddToCart,
       listItems,
       rate,
@@ -42,10 +40,6 @@ export default class Details extends React.Component {
             avaliations={ avaliations }
           />
         </div>
-        {/* <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
-        <p data-testid="shopping-cart-size">
-          { cartItemsQuantity }
-        </p> */}
       </div>
     );
   }
