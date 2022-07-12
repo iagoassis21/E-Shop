@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Categories from '../components/Categories';
 import Products from '../components/Products';
@@ -14,20 +13,13 @@ class ProductList extends React.Component {
       onProductByCategoryId,
       onAddToCart,
       onInputChange,
-      onSubmit,
-      cartItemsQuantity } = this.props;
+      onSubmit } = this.props;
     return (
       <div>
         <Categories
           categories={ categories }
           onSearchCategory={ onProductByCategoryId }
         />
-        <nav>
-          <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
-          <span data-testid="shopping-cart-size">
-            { cartItemsQuantity }
-          </span>
-        </nav>
         <form className="formProductList" onSubmit={ onSubmit }>
           <label
             htmlFor="searchId"
@@ -76,7 +68,6 @@ ProductList.propTypes = {
   onProductByCategoryId: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  cartItemsQuantity: PropTypes.number.isRequired,
 };
 
 export default ProductList;
