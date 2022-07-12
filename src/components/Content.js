@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import '../App.css';
 import Cart from '../pages/Cart';
+import CheckOut from '../pages/CheckOut';
 import Details from '../pages/Details';
 import ProductList from '../pages/ProductList';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
@@ -197,6 +198,14 @@ class Content extends React.Component {
                 onSaveAvaliation={ this.handleSaveAvaliation }
                 avaliations={ avaliations }
                 cartItemsQuantity={ this.handleCartItemsQuantity() }
+              />) }
+          />
+          <Route
+            path="/checkout"
+            render={ (routeProps) => (
+              <CheckOut
+                { ...routeProps }
+                cartItems={ cartItems }
               />) }
           />
         </Switch>
