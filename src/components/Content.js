@@ -14,7 +14,7 @@ class Content extends React.Component {
       categories: [],
       productItem: '',
       listItems: [],
-      cartItems: [],
+      cartItems: JSON.parse(localStorage.getItem('cart')) || [],
       rate: '',
       email: '',
       message: '',
@@ -24,10 +24,6 @@ class Content extends React.Component {
 
   componentDidMount() {
     this.showCategories();
-    const check = JSON.parse(localStorage.getItem('cart')) || [];
-    this.setState({
-      cartItems: check,
-    });
   }
 
   componentDidUpdate() {
