@@ -5,6 +5,7 @@ import Cart from '../pages/Cart';
 import Details from '../pages/Details';
 import ProductList from '../pages/ProductList';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import Header from './Header';
 
 class Content extends React.Component {
   constructor() {
@@ -23,6 +24,15 @@ class Content extends React.Component {
 
   componentDidMount() {
     this.showCategories();
+    const check = JSON.parse(localStorage.getItem('cart')) || [];
+    this.setState({
+      cartItems: check,
+    });
+  }
+
+  componentDidUpdate() {
+    const { cartItems } = this.state;
+    localStorage.setItem('cart', JSON.stringify(cartItems));
   }
 
   handleSubmit(ev) {
@@ -89,7 +99,7 @@ class Content extends React.Component {
     if (check) {
       this.setState({
         cartItems: this.increaseProductQuantity(id, cartItems),
-      });
+      }, () => { localStorage.setItem('cart', JSON.stringify(cartItems)); });
     } else {
       const productObject = {
         ...product,
@@ -119,21 +129,23 @@ class Content extends React.Component {
   }
 
   decreaseProductQuantity(itemId, cartList) {
-    return cartList.map((item) => {
+    const cartItemList = cartList.map((item) => {
       if (item.id === itemId && item.quantity > 1) {
         item.quantity -= 1;
       }
       return item;
     });
+    return cartItemList;
   }
 
   increaseProductQuantity(itemId, cartList) {
-    return cartList.map((item) => {
+    const cartItemList = cartList.map((item) => {
       if (item.id === itemId && (item.quantity < Number(item.available_quantity))) {
         item.quantity += 1;
       }
       return item;
     });
+    return cartItemList;
   }
 
   render() {
@@ -149,6 +161,7 @@ class Content extends React.Component {
 
     return (
       <div>
+        <Header cartItemsQuantity={ this.handleCartItemsQuantity() } />
         <Switch>
           <Route
             exact
@@ -163,7 +176,6 @@ class Content extends React.Component {
                 onProductByCategoryId={ this.searchProductsByCategoryId }
                 onInputChange={ this.handleInputChange }
                 onAddToCart={ this.handleAddToCart }
-                cartItemsQuantity={ this.handleCartItemsQuantity() }
               />) }
           />
           <Route
@@ -181,7 +193,6 @@ class Content extends React.Component {
                 { ...routeProps }
                 listItems={ listItems }
                 onAddToCart={ this.handleAddToCart }
-                cartItemsQuantity={ this.handleCartItemsQuantity() }
                 rate={ rate }
                 email={ email }
                 message={ message }
@@ -189,6 +200,7 @@ class Content extends React.Component {
                 onSubmit={ this.handleSubmit }
                 onSaveAvaliation={ this.handleSaveAvaliation }
                 avaliations={ avaliations }
+                cartItemsQuantity={ this.handleCartItemsQuantity() }
               />) }
           />
         </Switch>

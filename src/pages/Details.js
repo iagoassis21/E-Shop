@@ -31,10 +31,6 @@ export default class Details extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
-        <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
-        <span data-testid="shopping-cart-size">
-          { cartItemsQuantity }
-        </span>
         <div>
           <Avaliation
             email={ email }
@@ -46,6 +42,10 @@ export default class Details extends React.Component {
             avaliations={ avaliations }
           />
         </div>
+        {/* <Link to="/cart" data-testid="shopping-cart-button">Carrinho</Link>
+        <p data-testid="shopping-cart-size">
+          { cartItemsQuantity }
+        </p> */}
       </div>
     );
   }
@@ -58,7 +58,6 @@ Details.propTypes = {
   email: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  cartItemsQuantity: PropTypes.number.isRequired,
   onAddToCart: PropTypes.func.isRequired,
   onSaveAvaliation: PropTypes.func.isRequired,
   avaliations: PropTypes.arrayOf(PropTypes.object).isRequired,
